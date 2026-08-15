@@ -169,7 +169,7 @@ The frontend began as wireframes in Figma, which were then turned into a working
 
 A couple of sections are intentionally left out of this README for now, to be added once they're finalized:
 
-- **Installation & Setup** — step-by-step setup instructions for both the backend and frontend
+- **Installation & Setup** — step-by-step setup instructions for both the backend and frontend, including copying `.env.example` to `.env` and setting `ALLOWED_ORIGINS` and `ALLOW_DEMO_IDS`
 - **Known Limitations** — an honest rundown of current rough edges
 
 ---
