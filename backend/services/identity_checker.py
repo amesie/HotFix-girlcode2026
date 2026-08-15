@@ -22,6 +22,16 @@ def check_identity(id_number):
 
     This function uses synthetic data only.
     It does not connect to real Home Affairs records.
+
+    Returns the raw-detection shape backend/api/routes.py's
+    _adapt_detection_result() expects: {"status": "CLEAR" | "FLAGGED",
+    "riskLevel": "LOW" | "MEDIUM" | "HIGH", "issues": [{"type", "message"}]}.
+    routes.py owns turning `issues` into user-facing flag copy via
+    _ISSUE_TYPE_MAP / _FLAG_COPY — this function only reports what it found.
+
+    Raises LookupError if id_number isn't in this dataset, so routes.py's
+    existing _run_detection() fallback (to the DB-record-derived mock) takes
+    over instead of this function silently guessing "clean".
     """
 
     records = load_records()
@@ -31,84 +41,43 @@ def check_identity(id_number):
         None
     )
 
-    # ID does not exist in the demo dataset
     if record is None:
-        return {
-            "found": False,
-            "idNumber": id_number,
-            "flags": [],
-            "cleanRecord": False,
-            "message": "No record found for this ID number in our demo dataset."
-        }
+        raise LookupError(f"No demo record found for id_number {id_number!r}")
 
-    flags = []
+    issues = []
 
     # Check for fraudulent or unexpected marriage
     if record.get("scenario") == "fraudulent_marriage":
-        flags.append({
-            "type": "marital_status_mismatch",
-            "severity": "high",
-            "title": "Unexpected Marriage on Record",
-            "plainExplanation": (
+        issues.append({
+            "type": "MULTIPLE_ACTIVE_MARRIAGES",
+            "message": (
                 "The demo record shows a marriage that does not match "
                 "the expected marital status."
             ),
-            "nextSteps": [
-                "Verify the information with Home Affairs.",
-                "Report suspected identity fraud to the appropriate authorities.",
-                "Keep a record of your case or reference number."
-            ]
         })
 
     # Check for duplicate ID
     if record.get("duplicate") is True:
-        flags.append({
-            "type": "duplicate_id",
-            "severity": "high",
-            "title": "Possible Duplicate ID",
-            "plainExplanation": (
-                "The demo record contains a duplicate identity indicator."
-            ),
-            "nextSteps": [
-                "Contact Home Affairs for verification.",
-                "Request clarification about the duplicate record.",
-                "Keep any reference number provided."
-            ]
+        issues.append({
+            "type": "DUPLICATE_ID_NUMBER",
+            "message": "The demo record contains a duplicate identity indicator.",
         })
 
     # Check for deceased flag
     if record.get("deceased") is True:
-        flags.append({
-            "type": "deceased_flag",
-            "severity": "high",
-            "title": "Deceased Status Flag",
-            "plainExplanation": (
-                "The demo record contains a deceased-status indicator."
-            ),
-            "nextSteps": [
-                "Contact Home Affairs immediately for verification.",
-                "Request correction of the record if it is incorrect."
-            ]
+        issues.append({
+            "type": "DECEASED_FLAG",
+            "message": "The demo record contains a deceased-status indicator.",
         })
 
     # Check for blocked ID
     if record.get("blocked") is True:
-        flags.append({
-            "type": "blocked_id",
-            "severity": "high",
-            "title": "Blocked Identity Record",
-            "plainExplanation": (
-                "The demo record indicates that the identity record is blocked."
-            ),
-            "nextSteps": [
-                "Contact Home Affairs to determine why the record is blocked.",
-                "Request the appropriate process for resolving the issue."
-            ]
+        issues.append({
+            "type": "BLOCKED_ID",
+            "message": "The demo record indicates that the identity record is blocked.",
         })
 
-    return {
-        "found": True,
-        "idNumber": id_number,
-        "flags": flags,
-        "cleanRecord": len(flags) == 0
-    }
+    if not issues:
+        return {"status": "CLEAR", "riskLevel": "LOW", "issues": []}
+
+    return {"status": "FLAGGED", "riskLevel": "HIGH", "issues": issues}
