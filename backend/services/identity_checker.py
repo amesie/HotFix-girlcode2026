@@ -9,6 +9,16 @@ DATA_FILE = (
     / "marriages.json"
 )
 
+# Matches the severity taxonomy routes.py already uses in _MOCK_RESULTS —
+# duplicate-ID hits are MEDIUM, everything else here is HIGH.
+_ISSUE_RISK_LEVEL = {
+    "MULTIPLE_ACTIVE_MARRIAGES": "HIGH",
+    "DUPLICATE_ID_NUMBER": "MEDIUM",
+    "DECEASED_FLAG": "HIGH",
+    "BLOCKED_ID": "HIGH",
+}
+_RISK_LEVEL_RANK = {"LOW": 0, "MEDIUM": 1, "HIGH": 2}
+
 
 def load_records():
     """Load synthetic identity records from the JSON dataset."""
@@ -80,4 +90,8 @@ def check_identity(id_number):
     if not issues:
         return {"status": "CLEAR", "riskLevel": "LOW", "issues": []}
 
-    return {"status": "FLAGGED", "riskLevel": "HIGH", "issues": issues}
+    risk_level = max(
+        (_ISSUE_RISK_LEVEL.get(issue["type"], "MEDIUM") for issue in issues),
+        key=_RISK_LEVEL_RANK.get,
+    )
+    return {"status": "FLAGGED", "riskLevel": risk_level, "issues": issues}
