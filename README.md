@@ -163,7 +163,9 @@ Then set in `.env`:
 |---|---|
 | `ALLOWED_ORIGINS` | Comma-separated extra CORS origins, beyond the built-in defaults (`localhost:3000`, `localhost:5173`, `127.0.0.1:5173`, `127.0.0.1:3000`). Leave blank for local dev. |
 | `ALLOW_DEMO_IDS` | `true` (default) lets the 5 synthetic demo ID numbers bypass the Luhn checksum for the Identity Checker demo. Set `false` to enforce it strictly on every ID. |
-| `GROQ_API_KEY` | Enables Groq-backed classification/phrasing for the chatbot. Leave blank and the chatbot still works end-to-end — it runs on the deterministic keyword classifier and templated phrasing instead. |
+| `GROQ_API_KEY` | Enables Groq-backed classification/phrasing for the chatbot. Leave blank and the chatbot still works end-to-end — it runs on the deterministic keyword classifier and templated phrasing instead, which is the fallback path, not the intended full experience. |
+
+**Getting a Groq API key** (optional, but needed for the chatbot's actual LLM-backed behavior rather than its fallback): sign up free at [console.groq.com](https://console.groq.com/keys), click **Create API Key**, and paste the value into your own `.env` as `GROQ_API_KEY=...`. Each person running this repo needs their own key — keys aren't shared or committed anywhere in this repo (`.env` is gitignored; only `.env.example`, with no real value, is tracked).
 
 Start the server:
 
