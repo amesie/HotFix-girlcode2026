@@ -1,1 +1,7 @@
 pytest==9.1.1
+fastapi
+uvicorn
+pydantic
+python-dotenv
+httpx
+httpx2
