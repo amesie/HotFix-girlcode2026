@@ -32,6 +32,7 @@ export type ChatResponse = {
   estimatedCost: string
   estimatedTime: string
   nearestBranch: NearestBranch | null
+  conversationId?: string
 }
 
 type ApiErrorBody = {
@@ -59,6 +60,10 @@ export function checkIdentity(idNumber: string): Promise<CheckIdentityResponse> 
   return postJson<CheckIdentityResponse>("/api/check-identity", { idNumber })
 }
 
-export function sendChatMessage(message: string, location?: Location): Promise<ChatResponse> {
-  return postJson<ChatResponse>("/api/chat", { message, location })
+export function sendChatMessage(
+  message: string,
+  conversationId: string,
+  location?: Location,
+): Promise<ChatResponse> {
+  return postJson<ChatResponse>("/api/chat", { message, conversationId, location })
 }

@@ -5,3 +5,4 @@ pydantic
 python-dotenv
 httpx
 httpx2
+groq

@@ -287,20 +287,35 @@ def test_health_endpoint(client):
     assert body["detection"] in ("real", "mock")
 
 
-def test_chat_stub_without_location(client):
-    response = client.post("/api/chat", json={"message": "I need to register my baby's birth"})
+def test_chat_binds_to_home_affairs_guide_and_reaches_a_full_checklist(client):
+    # backend/services/home_affairs_guide.py now defines answer(), so routes.py's
+    # existing _CHAT_CANDIDATE_FN_NAMES binding picks it up over _chat_stub().
+    # "spelling error" is the one sub-case with no follow-up complications
+    # question, so a single message reaches a full checklist.
+    from backend.services import home_affairs_guide
+
+    home_affairs_guide.reset_sessions()
+    response = client.post("/api/chat", json={"message": "how do I fix my name, there's a spelling mistake"})
+    home_affairs_guide.reset_sessions()
+
     assert response.status_code == 200
     body = response.json()
     assert body["nearestBranch"] is None
     assert isinstance(body["documentsNeeded"], list) and body["documentsNeeded"]
 
 
-def test_chat_stub_with_location(client):
+def test_chat_never_fabricates_a_branch_even_with_location(client):
+    # home_affairs_guide has no branch-location data source, so it honestly
+    # returns None rather than inventing an address the way the old stub did.
+    from backend.services import home_affairs_guide
+
+    home_affairs_guide.reset_sessions()
     response = client.post(
         "/api/chat",
         json={"message": "baby", "location": {"lat": -33.9249, "lng": 18.4241}},
     )
+    home_affairs_guide.reset_sessions()
+
     assert response.status_code == 200
     body = response.json()
-    assert body["nearestBranch"] is not None
-    assert "distanceKm" in body["nearestBranch"]
+    assert body["nearestBranch"] is None

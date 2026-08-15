@@ -43,6 +43,10 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
   const [typing, setTyping] = useState(false)
   const [suggestionUsed, setSuggestionUsed] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  // One id for this chat session, generated once on open, sent on every
+  // turn so the backend can track multi-turn conversation state per user
+  // instead of guessing/sharing it.
+  const conversationIdRef = useRef<string>(crypto.randomUUID())
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -57,7 +61,7 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
     setTyping(true)
 
     try {
-      const data = await sendChatMessage(text)
+      const data = await sendChatMessage(text, conversationIdRef.current)
       const replies = buildReplyMessages(data)
 
       let delay = 700

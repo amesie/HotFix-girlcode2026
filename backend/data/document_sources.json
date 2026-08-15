@@ -1,0 +1,94 @@
+{
+  "affidavit": {
+    "display_name": "Affidavit",
+    "description": "A sworn statement prepared and commissioned by an authorised commissioner of oaths.",
+    "sources": [
+      "SAPS",
+      "Home Affairs, where the office provides that service",
+      "A bank or post office where an authorised commissioner is available",
+      "An attorney or other authorised commissioner"
+    ],
+    "reliably_free_source": "SAPS",
+    "cost_note": "Ask the specific office whether commissioning is free; never pay an unofficial fee. SAPS and some government offices commonly provide commissioning without charge, but private providers may charge for drafting or related services.",
+    "verify_before_demo": true,
+    "notes": [
+      "The applicant must sign in the commissioner's presence. Do not sign beforehand."
+    ]
+  },
+  "certified_copy_of_id": {
+    "display_name": "Certified copy of an ID",
+    "description": "A certified copy of an identity document.",
+    "sources": [
+      "SAPS",
+      "Home Affairs",
+      "A bank or post office with an authorised commissioner",
+      "An attorney or other authorised commissioner"
+    ],
+    "cost_note": "The exact availability and cost can differ by office.",
+    "verify_before_demo": true,
+    "notes": [
+      "Take the original document with you when getting a certified copy made."
+    ]
+  },
+  "birth_certificate_reissue": {
+    "display_name": "Birth certificate re-issue",
+    "description": "A replacement or additional birth certificate.",
+    "sources": [
+      "A Home Affairs office",
+      "An approved online channel where available"
+    ],
+    "cost_note": "The required certificate type and current tariff must be confirmed against Home Affairs' current fee schedule.",
+    "verify_before_demo": true,
+    "notes": [
+      "Do not hard-code a R75 or R20 fee for this service — confirm the current tariff with Home Affairs before quoting a price."
+    ]
+  },
+  "marriage_or_death_certificate_reissue": {
+    "display_name": "Marriage or death certificate re-issue",
+    "description": "A replacement or additional marriage or death certificate, requested from Home Affairs using the relevant civil-record service.",
+    "sources": [
+      "Home Affairs, using the relevant civil-record service"
+    ],
+    "applicant_provides": [
+      "ID",
+      "Names and details of the people concerned",
+      "Marriage or death date, if known",
+      "Existing certificate or reference details, if available",
+      "Proof of relationship or authority where required",
+      "Prescribed fee, if applicable"
+    ],
+    "cost_note": "Fee, if applicable, must be confirmed with Home Affairs.",
+    "verify_before_demo": true
+  },
+  "court_order": {
+    "display_name": "Court order",
+    "description": "A court order for the matter at hand, from the court that dealt with it.",
+    "sources": [
+      "Magistrates' court",
+      "High Court",
+      "Children's Court",
+      "Divorce court"
+    ],
+    "cost_note": null,
+    "verify_before_demo": false,
+    "notes": [
+      "The relevant court depends on the issue.",
+      "Home Affairs cannot normally substitute a private letter for a required court order."
+    ]
+  },
+  "foreign_documents": {
+    "display_name": "Foreign documents",
+    "description": "Requirements for documents issued outside South Africa.",
+    "requirements": [
+      "Apostille or legalisation",
+      "Official translation into an accepted South African language",
+      "Verification by the relevant embassy or consulate",
+      "Additional citizenship or immigration evidence"
+    ],
+    "cost_note": null,
+    "verify_before_demo": false,
+    "notes": [
+      "The receiving Home Affairs office or South African mission should confirm the exact requirements before travel."
+    ]
+  }
+}

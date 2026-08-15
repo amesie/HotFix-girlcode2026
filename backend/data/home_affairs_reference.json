@@ -1,0 +1,1272 @@
+{
+  "general_disclaimer": "Requirements can vary according to the person's circumstances, age, citizenship, family situation, and the reason for the application. Home Affairs may request additional documents after reviewing a case.",
+  "services": {
+    "birth_registration": {
+      "display_name": "Birth registration",
+      "intro": "A birth should be registered within 30 days of the child's birth. The application is made by a parent, next of kin, or legal guardian at a Home Affairs office. If the child was born outside South Africa, registration may be handled through a South African embassy or consulate.",
+      "sub_cases": {
+        "within_30_days": {
+          "label": "Registering within 30 days of birth",
+          "not_covered": false,
+          "cost": {
+            "amount": "Generally free",
+            "verify_before_demo": false,
+            "note": "The first birth registration and first birth certificate are generally free. Do not add a certificate re-issue fee to a first birth-registration checklist."
+          },
+          "general_requirements": {
+            "personal_attendance": "The parent, guardian, or informant must attend where Home Affairs needs to verify the application.",
+            "biometrics": "The child may need to be present for biometric capture (palm, footprint, or fingerprint), depending on age and the specific registration."
+          },
+          "base_documents": [
+            {
+              "document": "Proof of birth (Form DHA-24/PB)",
+              "issuer": "Hospital, clinic, or other health facility",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Confirms the birth; normally completed or issued through the health facility where the child was born.",
+              "source_refs": []
+            },
+            {
+              "document": "Parents' IDs or passports",
+              "issuer": "The parents",
+              "original_required": false,
+              "certified_copy_acceptable": true,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Provide original documents or certified copies where requested.",
+              "source_refs": []
+            },
+            {
+              "document": "Marriage certificate",
+              "issuer": "The parents' existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": "relevant to the registration (e.g. the parents are married)",
+              "note": "Required where relevant to the registration. Not normally issued afresh for the birth-registration application.",
+              "source_refs": []
+            }
+          ],
+          "conditional_documents": {
+            "birth_outside_health_facility": {
+              "trigger_label": "The birth happened outside a health facility",
+              "documents": [
+                {
+                  "document": "Affidavit confirming the birth (Form DHA-24/PBA)",
+                  "issuer": "Home Affairs provides the form; the person who witnessed the birth supplies the information",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "Required where the birth occurred outside a health facility. The form is obtained from a Home Affairs office.",
+                  "source_refs": ["affidavit"]
+                }
+              ]
+            },
+            "parents_unmarried_father_to_be_recorded": {
+              "trigger_label": "Parents are unmarried and the father is to be recorded",
+              "documents": [
+                {
+                  "document": "Acknowledgement of paternity",
+                  "issuer": "Home Affairs, completed by the relevant parents",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": true,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "May be required where the parents are unmarried and the father is to be recorded. Both parents may need to appear.",
+                  "source_refs": []
+                }
+              ]
+            },
+            "child_abandoned_orphaned_or_disputed_parentage": {
+              "trigger_label": "Child is abandoned or orphaned, parentage is disputed, or another exceptional guardianship situation applies",
+              "documents": [
+                {
+                  "document": "Court order",
+                  "issuer": "Relevant magistrates' or High Court, depending on the matter",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "May be required for an abandoned or orphaned child, disputed parentage, guardianship, or another exceptional situation.",
+                  "source_refs": ["court_order"]
+                }
+              ]
+            },
+            "registered_by_someone_other_than_a_parent": {
+              "trigger_label": "Someone other than a parent (guardian, next of kin, other authorised informant) is registering the birth",
+              "documents": [
+                {
+                  "document": "Guardian or informant's ID",
+                  "issuer": "The legal guardian, next of kin, or other authorised informant",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "Required where someone other than a parent registers the birth.",
+                  "source_refs": []
+                },
+                {
+                  "document": "Proof of guardianship or care",
+                  "issuer": "Relevant court or social-development authority",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "May be required where a guardian, social worker, or institution is acting for the child.",
+                  "source_refs": []
+                }
+              ]
+            }
+          },
+          "process_notes": [],
+          "disclaimer": null
+        },
+        "late_registration": {
+          "label": "Registering more than 30 days after the birth",
+          "not_covered": true,
+          "message": "Late registration is a different process and can require additional evidence, interviews, affidavits, verification, or approval. I don't have the specific document checklist for late registration — please confirm the requirements with your nearest Home Affairs office."
+        }
+      }
+    },
+    "smart_id": {
+      "display_name": "Smart ID",
+      "intro": "A branch visit or approved biometric channel is generally required for photograph, fingerprints, and signature. eHomeAffairs can support an online application for eligible applicants, but it does not eliminate biometric capture.",
+      "sub_cases": {
+        "first_application_16_plus": {
+          "label": "First Smart ID application — applicant aged 16 or older",
+          "not_covered": false,
+          "cost": null,
+          "cost_note": "No fee is stated in the source material for a first application. Confirm with Home Affairs.",
+          "general_requirements": {
+            "biometrics": "Photograph, fingerprints, and signature, captured at a branch or approved biometric channel."
+          },
+          "base_documents": [
+            {
+              "document": "Birth certificate",
+              "issuer": "Home Affairs or the applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": true,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "A certified copy may be required.",
+              "source_refs": []
+            },
+            {
+              "document": "Parent, legal guardian, or informant's ID",
+              "issuer": "The relevant parent, guardian, or informant",
+              "original_required": null,
+              "certified_copy_acceptable": true,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Home Affairs' Smart ID requirements refer to a certified copy.",
+              "source_refs": []
+            },
+            {
+              "document": "Existing identity document",
+              "issuer": "The applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": "the applicant already has an ID book or another identity document",
+              "note": "Required if the person already has an ID book or another identity document.",
+              "source_refs": []
+            },
+            {
+              "document": "Biometric information (photograph, fingerprints, signature)",
+              "issuer": "Captured by Home Affairs or an approved partner",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": true,
+              "biometrics_required": true,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            }
+          ],
+          "conditional_documents": {
+            "parent_deceased": {
+              "trigger_label": "A parent is deceased",
+              "documents": [
+                {
+                  "document": "Death certificate",
+                  "issuer": "Home Affairs or the family's existing records",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "May be required where a parent is deceased.",
+                  "source_refs": ["marriage_or_death_certificate_reissue"]
+                },
+                {
+                  "document": "Deceased parent's ID",
+                  "issuer": "Home Affairs or the family's existing records",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "May be required where a parent is deceased.",
+                  "source_refs": []
+                }
+              ]
+            },
+            "guardian_acting_for_applicant": {
+              "trigger_label": "A legal guardian is acting for the applicant",
+              "documents": [
+                {
+                  "document": "Guardianship or court documents",
+                  "issuer": "Relevant court or authority",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "Required where a legal guardian is acting for the applicant.",
+                  "source_refs": ["court_order"]
+                }
+              ]
+            }
+          },
+          "process_notes": [],
+          "disclaimer": null
+        },
+        "renewal_or_replacement": {
+          "label": "Renewal or replacement of an existing ID / Smart ID",
+          "not_covered": false,
+          "intro": "First establish which situation applies: replacing a green ID book with a Smart ID, replacing a Smart ID, a lost/stolen document, a minor applicant, a parent-deceased case, a marital-status change, or a pending name/surname amendment.",
+          "cost": {
+            "amount": "R140 re-issue fee (published Home Affairs guidance, for the relevant re-issue category)",
+            "verify_before_demo": true,
+            "note": "Fees should still be verified before implementation because tariffs can change."
+          },
+          "situations": {
+            "replacing_green_id_book": {
+              "label": "Replacing a green ID book with a Smart ID",
+              "documents": [
+                {
+                  "document": "Existing green ID book or a copy",
+                  "issuer": "The applicant",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": []
+                }
+              ],
+              "conditional_documents": {
+                "book_lost": {
+                  "trigger_label": "The green ID book is lost",
+                  "documents": [
+                    {
+                      "document": "Affidavit",
+                      "issuer": "Authorised commissioner of oaths",
+                      "original_required": null,
+                      "certified_copy_acceptable": null,
+                      "personal_attendance_required": true,
+                      "biometrics_required": null,
+                      "fee": null,
+                      "applies_when": null,
+                      "note": "If lost, an affidavit may be required.",
+                      "source_refs": ["affidavit"]
+                    }
+                  ]
+                }
+              }
+            },
+            "replacing_smart_id": {
+              "label": "Replacing a Smart ID",
+              "documents": [
+                {
+                  "document": "Existing card or a copy",
+                  "issuer": "The applicant",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": []
+                }
+              ],
+              "conditional_documents": {
+                "card_lost_or_damaged": {
+                  "trigger_label": "The Smart ID is lost or damaged",
+                  "documents": [
+                    {
+                      "document": "Affidavit or other loss/damage documentation",
+                      "issuer": "Authorised commissioner of oaths",
+                      "original_required": null,
+                      "certified_copy_acceptable": null,
+                      "personal_attendance_required": true,
+                      "biometrics_required": null,
+                      "fee": null,
+                      "applies_when": null,
+                      "note": "If lost or damaged, an affidavit or other loss/damage documentation may be required.",
+                      "source_refs": ["affidavit"]
+                    }
+                  ]
+                }
+              }
+            },
+            "lost_or_stolen": {
+              "label": "Lost or stolen document",
+              "documents": [
+                {
+                  "document": "Police affidavit or loss report",
+                  "issuer": "SAPS",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": true,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": "where required by the office or application channel",
+                  "note": "Where required by the office or application channel.",
+                  "source_refs": ["affidavit"]
+                }
+              ],
+              "conditional_documents": {}
+            },
+            "minor_applicant": {
+              "label": "Minor applicant",
+              "documents": [
+                {
+                  "document": "Parent or legal guardian's ID",
+                  "issuer": "The relevant parent or guardian",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": []
+                },
+                {
+                  "document": "Relevant guardianship documents",
+                  "issuer": "Relevant court or authority",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": ["court_order"]
+                }
+              ],
+              "conditional_documents": {}
+            },
+            "parent_deceased": {
+              "label": "Parent deceased",
+              "documents": [
+                {
+                  "document": "Death certificate",
+                  "issuer": "Home Affairs",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "The deceased parent's identity evidence, where required.",
+                  "source_refs": ["marriage_or_death_certificate_reissue"]
+                }
+              ],
+              "conditional_documents": {}
+            },
+            "marital_status_change": {
+              "label": "Marital-status change",
+              "documents": [
+                {
+                  "document": "Marriage certificate or other relevant legal document",
+                  "issuer": "Home Affairs / the applicant's existing records",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": ["marriage_or_death_certificate_reissue"]
+                }
+              ],
+              "conditional_documents": {}
+            },
+            "name_or_surname_amendment_pending": {
+              "label": "Name or surname amendment",
+              "documents": [],
+              "conditional_documents": {},
+              "process_note": "The amendment must generally be finalised before a new Smart ID is issued."
+            }
+          },
+          "important_exclusions": [
+            "Do not tell every applicant to obtain a new birth certificate.",
+            "Do not tell every applicant to complete one universal BI-9 form — there is no single universal Smart ID form for every case.",
+            "Do not tell every applicant to pay a fixed birth-certificate fee.",
+            "Do not tell every applicant to bring a parent's ID regardless of age or application type.",
+            "The correct requirements depend on the application pathway and the applicant's circumstances."
+          ]
+        }
+      }
+    },
+    "passport": {
+      "display_name": "Passport",
+      "intro": "Passport applications can be initiated through eHomeAffairs or submitted through an eligible Home Affairs office, participating bank, or South African mission abroad. The applicant must still meet biometric and document requirements.",
+      "sub_cases": {
+        "adult": {
+          "label": "Adult applicant",
+          "not_covered": false,
+          "cost": {
+            "amount": "R600 (published tourist-passport tariff)",
+            "verify_before_demo": true,
+            "note": "Paid through the relevant application channel. Verify before the demo because tariffs may change."
+          },
+          "base_documents": [
+            {
+              "document": "Form DHA-73",
+              "issuer": "Home Affairs office or application channel",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "This is the passport application form.",
+              "source_refs": []
+            },
+            {
+              "document": "Original South African ID and copy",
+              "issuer": "The applicant's existing records",
+              "original_required": true,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Required for an adult South African citizen.",
+              "source_refs": []
+            },
+            {
+              "document": "Existing passport",
+              "issuer": "The applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": "renewing or replacing a passport",
+              "note": "Present it if renewing or replacing a passport.",
+              "source_refs": []
+            },
+            {
+              "document": "Two compliant colour photographs",
+              "issuer": "Applicant or a photograph provider",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Not needed at Smart ID card offices where the image is captured digitally.",
+              "source_refs": []
+            }
+          ],
+          "conditional_documents": {
+            "passport_lost_or_stolen": {
+              "trigger_label": "The passport was lost or stolen",
+              "documents": [
+                {
+                  "document": "Loss report, Form DHA-335, and police affidavit",
+                  "issuer": "Home Affairs provides the loss-report form; SAPS records the loss",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": true,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "Required if the passport was lost or stolen.",
+                  "source_refs": ["affidavit"]
+                }
+              ]
+            }
+          },
+          "process_notes": [],
+          "disclaimer": null
+        },
+        "under_16": {
+          "label": "Applicant under 16",
+          "not_covered": false,
+          "cost": {
+            "amount": null,
+            "verify_before_demo": true,
+            "note": "The prescribed fee applies; the amount is not stated for this category in the source material — confirm with Home Affairs."
+          },
+          "base_documents": [
+            {
+              "document": "Birth certificate and copy",
+              "issuer": "Applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Provided instead of an ID.",
+              "source_refs": []
+            },
+            {
+              "document": "Parent or guardian documentation",
+              "issuer": "Parent or legal guardian",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Parental consent and attendance",
+              "issuer": "Parent or guardian",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": "where required",
+              "note": "Parental consent and attendance where required.",
+              "source_refs": []
+            },
+            {
+              "document": "Existing passport",
+              "issuer": "Applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": "renewing",
+              "note": "If renewing.",
+              "source_refs": []
+            },
+            {
+              "document": "Required photographs",
+              "issuer": "Applicant or a photograph provider",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Unless digital capture is available.",
+              "source_refs": []
+            }
+          ],
+          "conditional_documents": {},
+          "process_notes": [],
+          "disclaimer": null
+        },
+        "under_18": {
+          "label": "Applicant under 18",
+          "not_covered": false,
+          "cost": null,
+          "base_documents": [
+            {
+              "document": "Parental consent",
+              "issuer": "Parents",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Parental consent is required for the issue of a passport.",
+              "source_refs": []
+            },
+            {
+              "document": "Both parents' IDs",
+              "issuer": "Parents",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Both parents may need to provide their IDs, especially where both parents appear on the birth certificate.",
+              "source_refs": []
+            },
+            {
+              "document": "Child's original or certified birth certificate",
+              "issuer": "Applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": true,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Especially where both parents appear on the birth certificate.",
+              "source_refs": []
+            }
+          ],
+          "conditional_documents": {
+            "one_parent_unavailable": {
+              "trigger_label": "One parent is unavailable",
+              "documents": [
+                {
+                  "document": "Consent, affidavit, court order, or other evidence explaining the parent's absence",
+                  "issuer": "Varies — Home Affairs / commissioner of oaths / court, depending on which is used",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "If one parent is unavailable, Home Affairs may require consent, an affidavit, a court order, or other evidence explaining the absence.",
+                  "source_refs": ["affidavit", "court_order"]
+                }
+              ]
+            }
+          },
+          "process_notes": [],
+          "disclaimer": null
+        },
+        "applying_abroad": {
+          "label": "Applying from outside South Africa",
+          "not_covered": false,
+          "cost": {
+            "amount": null,
+            "verify_before_demo": true,
+            "note": "Photographs and payment are required; the amount depends on the application channel/mission — confirm with the relevant South African mission."
+          },
+          "base_documents": [
+            {
+              "document": "Form DHA-73",
+              "issuer": "Home Affairs / South African mission",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Proof of South African citizenship",
+              "issuer": "Applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Existing ID, passport, or birth record",
+              "issuer": "Applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Form DHA-529 (determination of citizenship)",
+              "issuer": "Home Affairs / South African mission",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": "where required",
+              "note": "Form DHA-529 for determination of citizenship where required.",
+              "source_refs": []
+            },
+            {
+              "document": "Supporting documents requested by the embassy or consulate",
+              "issuer": "Embassy or consulate",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Photographs and payment",
+              "issuer": "Applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            }
+          ],
+          "conditional_documents": {},
+          "process_notes": [
+            "The overseas mission may have additional appointment and document rules."
+          ],
+          "disclaimer": null
+        }
+      }
+    },
+    "name_surname_amendment": {
+      "display_name": "Name or surname amendment",
+      "intro": "Name and surname applications are not one single process. The documents depend on whether the issue is a spelling error, marriage, divorce, widowhood, a child's surname, adoption, parentage, or an adult choosing an unrelated surname. Home Affairs' amendment services include altering a forename, changing a minor's surname, assuming a different surname, and correcting information such as date or place of birth.",
+      "sub_cases": {
+        "spelling_error": {
+          "label": "Spelling or administrative error",
+          "not_covered": false,
+          "cost": null,
+          "base_documents": [
+            {
+              "document": "Completed amendment forms",
+              "issuer": "Home Affairs",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": "where applicable",
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Birth certificate or existing ID",
+              "issuer": "Applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Documentary proof showing the correct spelling",
+              "issuer": "Varies",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Certified copies of relevant parent or family records",
+              "issuer": "Varies",
+              "original_required": null,
+              "certified_copy_acceptable": true,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": ["certified_copy_of_id"]
+            },
+            {
+              "document": "DHA-9 fingerprint form",
+              "issuer": "Home Affairs",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": true,
+              "fee": null,
+              "applies_when": "applicant aged 16 or older",
+              "note": "For applicants aged 16 or older.",
+              "source_refs": []
+            },
+            {
+              "document": "Written explanation or motivation",
+              "issuer": "Applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Personal attendance for verification",
+              "issuer": null,
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": true,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            }
+          ],
+          "example_supporting_evidence": [
+            "Parent's ID with the correct spelling",
+            "Parent's birth or marriage certificate",
+            "Applicant's school, medical, or official records",
+            "Death or marriage certificates showing the correct family surname",
+            "An affidavit explaining the discrepancy"
+          ],
+          "conditional_documents": {},
+          "process_notes": [],
+          "disclaimer": "Home Affairs may require additional evidence if the correction affects parentage, citizenship, or the underlying birth record."
+        },
+        "marriage": {
+          "label": "Marriage-related surname change",
+          "not_covered": false,
+          "cost": null,
+          "base_documents": [
+            {
+              "document": "Applicant's ID or birth certificate",
+              "issuer": "Applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Marriage certificate",
+              "issuer": "Home Affairs, if the marriage was registered there",
+              "original_required": null,
+              "certified_copy_acceptable": true,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "If the applicant already holds the certificate, the original or certified copy should be supplied.",
+              "source_refs": ["marriage_or_death_certificate_reissue"]
+            },
+            {
+              "document": "Written confirmation of the surname the applicant wishes to use",
+              "issuer": "Applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Spouse's relevant details",
+              "issuer": "Spouse",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": "where requested",
+              "note": null,
+              "source_refs": []
+            }
+          ],
+          "conditional_documents": {},
+          "process_notes": [
+            "A new Smart ID or passport application is needed after the marital change is recorded."
+          ],
+          "disclaimer": null
+        },
+        "divorce_or_widowhood": {
+          "label": "Divorce or widowhood",
+          "not_covered": false,
+          "cost": null,
+          "base_documents": [
+            {
+              "document": "Applicant's ID",
+              "issuer": "Applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Marriage certificate",
+              "issuer": "Home Affairs / existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": "where needed to link the records",
+              "note": null,
+              "source_refs": ["marriage_or_death_certificate_reissue"]
+            },
+            {
+              "document": "Written confirmation of the surname the applicant wants to resume or use",
+              "issuer": "Applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            }
+          ],
+          "conditional_documents": {
+            "divorced": {
+              "trigger_label": "The applicant is divorced",
+              "documents": [
+                {
+                  "document": "Divorce decree",
+                  "issuer": "The court that granted the divorce",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": ["court_order"]
+                }
+              ]
+            },
+            "widowed": {
+              "trigger_label": "The applicant is widowed",
+              "documents": [
+                {
+                  "document": "Death certificate of the deceased spouse",
+                  "issuer": "Home Affairs",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "Can be requested from Home Affairs if the family does not have the original.",
+                  "source_refs": ["marriage_or_death_certificate_reissue"]
+                }
+              ]
+            }
+          },
+          "process_notes": [],
+          "disclaimer": null
+        },
+        "child_surname": {
+          "label": "Changing a child's surname",
+          "not_covered": false,
+          "cost": null,
+          "base_documents": [
+            {
+              "document": "Child's birth certificate or ID",
+              "issuer": "Applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "IDs of the parents or legal guardians",
+              "issuer": "Parents or legal guardians",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Written consent of the natural parents",
+              "issuer": "Natural parents",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "A good and sufficient written reason for the change",
+              "issuer": "Applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Affidavits explaining the circumstances",
+              "issuer": "Authorised commissioner of oaths",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": true,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": ["affidavit"]
+            }
+          ],
+          "conditional_documents": {
+            "taking_stepparent_surname": {
+              "trigger_label": "The child is taking a stepparent's surname",
+              "documents": [
+                {
+                  "document": "Stepparent's consent",
+                  "issuer": "Stepparent",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": []
+                }
+              ]
+            },
+            "follows_parents_marriage": {
+              "trigger_label": "The change follows the parents' marriage",
+              "documents": [
+                {
+                  "document": "Marriage certificate",
+                  "issuer": "Home Affairs / existing records",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": ["marriage_or_death_certificate_reissue"]
+                }
+              ]
+            },
+            "guardianship_or_adoption": {
+              "trigger_label": "The application relates to guardianship or adoption",
+              "documents": [
+                {
+                  "document": "Proof of guardianship or adoption",
+                  "issuer": "Relevant court or authority",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": ["court_order"]
+                }
+              ]
+            },
+            "consent_unavailable_disputed_or_court_decided": {
+              "trigger_label": "Parental consent is unavailable, disputed, or replaced by a court decision",
+              "documents": [
+                {
+                  "document": "Court order",
+                  "issuer": "Relevant court",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": "Where consent is unavailable, disputed, or replaced by a court decision.",
+                  "source_refs": ["court_order"]
+                }
+              ]
+            }
+          },
+          "process_notes": [
+            "Home Affairs' published amendment guidance refers to parental consent, marriage certificates, certified identity documents, affidavits, and online verification results for relevant child-surname cases."
+          ],
+          "disclaimer": null
+        },
+        "adult_unrelated_surname": {
+          "label": "Adult assuming an unrelated surname",
+          "not_covered": false,
+          "cost": null,
+          "base_documents": [
+            {
+              "document": "Existing ID or Smart ID",
+              "issuer": "Applicant's existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Birth certificate",
+              "issuer": "Home Affairs / existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": "Potentially including a full or unabridged record where required.",
+              "source_refs": []
+            },
+            {
+              "document": "Written motivation explaining the change",
+              "issuer": "Applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Evidence of the surname's family or legal connection",
+              "issuer": "Applicant",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Supporting family marriage, birth, or death certificates",
+              "issuer": "Home Affairs / existing records",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": ["marriage_or_death_certificate_reissue"]
+            },
+            {
+              "document": "Fingerprints and biometric verification",
+              "issuer": "Home Affairs",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": true,
+              "biometrics_required": true,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            },
+            {
+              "document": "Any additional forms specified by Home Affairs",
+              "issuer": "Home Affairs",
+              "original_required": null,
+              "certified_copy_acceptable": null,
+              "personal_attendance_required": null,
+              "biometrics_required": null,
+              "fee": null,
+              "applies_when": null,
+              "note": null,
+              "source_refs": []
+            }
+          ],
+          "conditional_documents": {
+            "surname_holder_consent_relevant": {
+              "trigger_label": "Consent from the surname holder is relevant",
+              "documents": [
+                {
+                  "document": "Consent from the surname holder",
+                  "issuer": "Surname holder",
+                  "original_required": null,
+                  "certified_copy_acceptable": null,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": []
+                },
+                {
+                  "document": "Certified copy of the surname holder's ID",
+                  "issuer": "Surname holder",
+                  "original_required": null,
+                  "certified_copy_acceptable": true,
+                  "personal_attendance_required": null,
+                  "biometrics_required": null,
+                  "fee": null,
+                  "applies_when": null,
+                  "note": null,
+                  "source_refs": ["certified_copy_of_id"]
+                }
+              ]
+            }
+          },
+          "process_notes": [],
+          "disclaimer": "This is usually more complex than correcting a spelling error. The application should not promise approval — Home Affairs must investigate and decide whether the evidence supports the change."
+        }
+      }
+    }
+  }
+}

@@ -44,6 +44,7 @@ class LocationModel(BaseModel):
 class ChatRequest(BaseModel):
     message: str
     location: LocationModel | None = None
+    conversationId: str | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -436,12 +437,16 @@ def _chat_stub(message: str, location: LocationModel | None) -> dict[str, Any]:
 
 @router.post("/api/chat")
 def chat(payload: ChatRequest) -> dict[str, Any]:
-    """PLACEHOLDER — owned by chatbot pair, replace on integration."""
+    """Delegates to home_affairs_guide.answer() when bound (see the binding
+    block above); falls back to the hardcoded _chat_stub() placeholder if
+    that module is unavailable or raises. conversationId lets the callee
+    track multi-turn state per conversation instead of guessing a session."""
     if _home_affairs_fn is not None:
         try:
             return _home_affairs_fn(
                 payload.message,
                 payload.location.model_dump() if payload.location else None,
+                payload.conversationId,
             )
         except Exception:
             logger.exception("home_affairs_guide raised; falling back to placeholder stub")
