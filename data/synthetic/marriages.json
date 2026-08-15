@@ -1,0 +1,43 @@
+[
+  {
+    "idNumber": "DEMO-ID-001",
+    "scenario": "clean",
+    "maritalStatus": "single",
+    "blocked": false,
+    "deceased": false,
+    "duplicate": false
+  },
+  {
+    "idNumber": "DEMO-ID-002",
+    "scenario": "fraudulent_marriage",
+    "maritalStatus": "married",
+    "expectedMaritalStatus": "single",
+    "blocked": false,
+    "deceased": false,
+    "duplicate": false
+  },
+  {
+    "idNumber": "DEMO-ID-003",
+    "scenario": "duplicate_id",
+    "maritalStatus": "single",
+    "blocked": false,
+    "deceased": false,
+    "duplicate": true
+  },
+  {
+    "idNumber": "DEMO-ID-004",
+    "scenario": "deceased_flag",
+    "maritalStatus": "single",
+    "blocked": false,
+    "deceased": true,
+    "duplicate": false
+  },
+  {
+    "idNumber": "DEMO-ID-005",
+    "scenario": "blocked_id",
+    "maritalStatus": "single",
+    "blocked": true,
+    "deceased": false,
+    "duplicate": false
+  }
+]
