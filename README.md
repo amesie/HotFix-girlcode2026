@@ -135,7 +135,22 @@ Verifi/
 
 ## Installation & Setup
 
+### Prerequisites
+
+- **Python 3.10+**
+- **Node 18+** (Node 22+ recommended, matching the `@types/node` version the frontend is built against)
+- **git**
+
+### Clone the repo
+
+```bash
+git clone https://github.com/amesie/Verifi.git
+cd Verifi
+```
+
 ### Backend
+
+From the repo root, optionally in a virtual environment (`python -m venv .venv && source .venv/bin/activate`, or `.venv\Scripts\activate` on Windows):
 
 ```bash
 pip install -r requirements.txt

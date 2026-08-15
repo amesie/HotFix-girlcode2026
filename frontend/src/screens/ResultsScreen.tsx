@@ -236,7 +236,7 @@ function ResultsStep({ result, onChat }: { result: CheckIdentityResponse; onChat
           lineHeight: 1.5,
         }}
       >
-        Hi <strong>Thabo</strong>, here's what we found:
+        Hi <strong>Naledi</strong>, here's what we found:
       </p>
 
       {activeFlags.map((flag, i) => (

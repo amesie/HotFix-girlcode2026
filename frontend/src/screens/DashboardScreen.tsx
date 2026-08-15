@@ -77,7 +77,7 @@ export default function DashboardScreen({
             boxShadow: "0 4px 12px rgba(254,200,104,0.4)",
           }}
         >
-          TM
+          NM
         </div>
         <div>
           <p style={{ margin: 0, fontSize: 13, color: "#8A7F6E", fontWeight: 600 }}>
@@ -92,7 +92,7 @@ export default function DashboardScreen({
               lineHeight: 1.2,
             }}
           >
-            Thabo Mokoena
+            Naledi Mokoena
           </h2>
         </div>
         <div style={{ marginLeft: "auto" }}>
@@ -125,7 +125,7 @@ export default function DashboardScreen({
             }}
           />
           <span style={{ fontSize: 13, color: "#8A7F6E", fontWeight: 600 }}>
-            ID: 8501015800081 · Last checked{" "}
+            ID: 8906065800088 · Last checked{" "}
           </span>
           <span style={{ fontSize: 13, color: "#473C33", fontWeight: 700 }}>3 days ago</span>
         </div>

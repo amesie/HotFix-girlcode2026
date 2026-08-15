@@ -22,17 +22,22 @@ function buildReplyMessages(data: ChatResponse): Message[] {
     })
   }
 
-  const costTimeLines = [
-    `Estimated cost: ${data.estimatedCost}`,
-    `Estimated time: ${data.estimatedTime}`,
-  ]
+  const costTimeLines: string[] = []
+  if (data.estimatedCost) {
+    costTimeLines.push(`Estimated cost: ${data.estimatedCost}`)
+  }
+  if (data.estimatedTime) {
+    costTimeLines.push(`Estimated time: ${data.estimatedTime}`)
+  }
   if (data.nearestBranch) {
+    if (costTimeLines.length > 0) costTimeLines.push("")
     costTimeLines.push(
-      "",
       `Nearest branch: ${data.nearestBranch.name}, ${data.nearestBranch.address} (${data.nearestBranch.distanceKm} km away)`,
     )
   }
-  messages.push({ from: "bot", text: costTimeLines.join("\n") })
+  if (costTimeLines.length > 0) {
+    messages.push({ from: "bot", text: costTimeLines.join("\n") })
+  }
 
   return messages
 }
@@ -190,7 +195,7 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
             }}
           >
             <p style={{ margin: 0, fontSize: 14, color: "#4a2510", fontWeight: 600, lineHeight: 1.5 }}>
-              Hi <strong>Thabo</strong>, what do you need help with today?
+              Hi <strong>Naledi</strong>, what do you need help with today?
             </p>
           </div>
         </div>

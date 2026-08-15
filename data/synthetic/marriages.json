@@ -39,5 +39,14 @@
     "blocked": true,
     "deceased": false,
     "duplicate": false
+  },
+  {
+    "idNumber": "8906065800088",
+    "scenario": "fraudulent_marriage",
+    "maritalStatus": "married",
+    "expectedMaritalStatus": "single",
+    "blocked": false,
+    "deceased": false,
+    "duplicate": false
   }
 ]
