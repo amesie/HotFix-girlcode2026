@@ -47,7 +47,12 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
   const [input, setInput] = useState("")
   const [typing, setTyping] = useState(false)
   const [suggestionUsed, setSuggestionUsed] = useState(false)
+  // Tappable choices for the question currently on screen (e.g. which
+  // service, which sub-case) — tapping one fills the input rather than
+  // sending immediately, so the user can still edit/add detail first.
+  const [activeOptions, setActiveOptions] = useState<string[]>([])
   const bottomRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
   // One id for this chat session, generated once on open, sent on every
   // turn so the backend can track multi-turn conversation state per user
   // instead of guessing/sharing it.
@@ -55,7 +60,7 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [messages, typing])
+  }, [messages, typing, activeOptions])
 
   const sendMessage = async (text: string) => {
     if (!text.trim()) return
@@ -63,6 +68,7 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
     setMessages((prev) => [...prev, userMsg])
     setInput("")
     setSuggestionUsed(true)
+    setActiveOptions([])
     setTyping(true)
 
     try {
@@ -73,7 +79,10 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
       replies.forEach((reply, i) => {
         setTimeout(() => {
           setMessages((prev) => [...prev, reply])
-          if (i === replies.length - 1) setTyping(false)
+          if (i === replies.length - 1) {
+            setTyping(false)
+            setActiveOptions(data.options ?? [])
+          }
         }, delay + i * 500)
       })
     } catch (err) {
@@ -83,6 +92,11 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
         { from: "bot", text: err instanceof Error ? err.message : "Something went wrong. Please try again." },
       ])
     }
+  }
+
+  const fillFromOption = (label: string) => {
+    setInput(label)
+    inputRef.current?.focus()
   }
 
   return (
@@ -263,6 +277,15 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
           </div>
         ))}
 
+        {/* Tappable options for the current question — fills the input, doesn't auto-send */}
+        {!typing && activeOptions.length > 0 && (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginLeft: 42, marginTop: 2 }}>
+            {activeOptions.map((label) => (
+              <OptionChip key={label} label={label} onPress={() => fillFromOption(label)} />
+            ))}
+          </div>
+        )}
+
         {/* Typing indicator */}
         {typing && (
           <div style={{ display: "flex", gap: 10, alignItems: "flex-end" }}>
@@ -330,6 +353,7 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
           }}
         >
           <input
+            ref={inputRef}
             type="text"
             placeholder="Or type your own question..."
             value={input}
@@ -378,6 +402,30 @@ export default function ChatbotScreen({ onClose }: { onClose: () => void }) {
         }
       `}</style>
     </div>
+  )
+}
+
+function OptionChip({ label, onPress }: { label: string; onPress: () => void }) {
+  const [pressed, setPressed] = useState(false)
+  return (
+    <button
+      onPointerDown={() => setPressed(true)}
+      onPointerUp={() => { setPressed(false); onPress() }}
+      onPointerLeave={() => setPressed(false)}
+      style={{
+        backgroundColor: pressed ? "#e8b450" : "#FDA769",
+        border: "none",
+        borderRadius: 999,
+        padding: "8px 14px",
+        cursor: "pointer",
+        transition: "all 0.1s ease",
+        transform: pressed ? "scale(0.96)" : "scale(1)",
+      }}
+    >
+      <span style={{ fontSize: 13, fontWeight: 700, color: "#4a2510", fontFamily: "'Nunito', sans-serif" }}>
+        {label}
+      </span>
+    </button>
   )
 }
 

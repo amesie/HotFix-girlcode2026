@@ -82,6 +82,69 @@ def test_out_of_scope_question_gets_honest_response_not_a_guess():
 
 
 # ---------------------------------------------------------------------------
+# `options` — tappable choices for multi-choice questions, kept out of the
+# `reply` prose. Built from the same reference-JSON labels the classifier
+# itself is constrained to, so tapping one and sending it back always
+# resolves the question it came from.
+# ---------------------------------------------------------------------------
+
+
+def test_clarify_service_response_lists_all_four_services_as_options():
+    reference = guide.load_reference()
+    response = guide._clarify_service_response(reference)
+
+    assert set(response["options"]) == {
+        "Birth registration", "Smart ID", "Passport", "Name or surname amendment",
+    }
+    # Prose shouldn't re-enumerate what's now in `options`.
+    assert "birth registration" not in response["reply"].lower()
+
+
+def test_clarify_sub_case_response_lists_service_specific_options():
+    reference = guide.load_reference()
+    response = guide._clarify_sub_case_response("passport", reference)
+
+    assert set(response["options"]) == {
+        "Adult applicant", "Applicant under 16", "Applicant under 18", "Applying from outside South Africa",
+    }
+
+
+def test_clarify_situation_response_lists_all_seven_situations():
+    reference = guide.load_reference()
+    response = guide._clarify_situation_response(reference)
+
+    assert len(response["options"]) == 7
+    assert "Lost or stolen document" in response["options"]
+
+
+def test_clarify_complications_response_includes_none_of_these_apply():
+    reference = guide.load_reference()
+    sub_case = reference["services"]["smart_id"]["sub_cases"]["first_application_16_plus"]
+    state = guide.ConversationState(service_id="smart_id", sub_case_id="first_application_16_plus")
+    applicable = guide._applicable_complication_ids(state, sub_case)
+
+    response = guide._clarify_complications_response(applicable, state, sub_case)
+
+    assert guide._NONE_OF_THESE_APPLY in response["options"]
+    assert len(response["options"]) == len(applicable) + 1
+
+
+def test_final_response_has_no_options_left_to_tap():
+    response = _build("birth_registration", "within_30_days")
+    assert response["options"] == []
+
+
+def test_tapping_none_of_these_apply_resolves_to_no_complications():
+    guide.answer("I need my first smart id", None, "conv-none-apply")
+    response = guide.answer("None of these apply", None, "conv-none-apply")
+
+    # Reached the final checklist with base documents only.
+    assert response["documentsNeeded"]
+    names = [line.split(" — ")[0] for line in response["documentsNeeded"]]
+    assert "Death certificate" not in names  # the parent_deceased complication wasn't added
+
+
+# ---------------------------------------------------------------------------
 # Checklist assembly — built from hand-constructed state, bypassing the
 # classifier entirely, so these test data fidelity precisely.
 # ---------------------------------------------------------------------------

@@ -709,53 +709,62 @@ def _build_final_reply(
 # ---------------------------------------------------------------------------
 
 
-def _question_response(reply: str) -> dict[str, Any]:
+_NONE_OF_THESE_APPLY = "None of these apply"
+
+
+def _question_response(reply: str, options: list[str] | None = None) -> dict[str, Any]:
+    """options are choices worth showing as tappable chips in the UI —
+    each one is exactly the text that, if sent back as the next message,
+    should resolve this question (they're built from the same reference-
+    JSON labels the classifier itself is constrained to). Kept out of the
+    `reply` prose so multi-choice questions don't turn into a run-on
+    sentence; always present (possibly empty) for a consistent response
+    shape."""
     return {
         "reply": reply,
         "documentsNeeded": [],
         "estimatedCost": "",
         "estimatedTime": "",
         "nearestBranch": None,
+        "options": options or [],
     }
 
 
-def _clarify_service_response() -> dict[str, Any]:
+def _clarify_service_response(reference: dict[str, Any]) -> dict[str, Any]:
+    options = [service["display_name"] for service in reference["services"].values()]
     return _question_response(
-        "I can help with 4 Home Affairs services: birth registration, Smart ID, passport, "
-        "or a name/surname amendment. Which one do you need help with? I don't have "
-        "information outside these four services."
+        "I can help with 4 Home Affairs services. Which one do you need help with? "
+        "I don't have information outside these four.",
+        options,
     )
 
 
 _SUB_CASE_QUESTIONS: dict[str, str] = {
     "birth_registration": "Is this within 30 days of the birth, or more than 30 days (late registration)?",
     "smart_id": "Is this a first Smart ID application (age 16+), or a renewal/replacement of an existing ID?",
-    "passport": "Is this for an adult, a child under 16, a child under 18, or are you applying from outside South Africa?",
-    "name_surname_amendment": (
-        "What kind of name change is it — a spelling/administrative error, a marriage-related "
-        "change, divorce or widowhood, a child's surname, or an adult assuming an unrelated surname?"
-    ),
+    "passport": "Which of these best describes the applicant?",
+    "name_surname_amendment": "What kind of name change is it?",
 }
 
 
-def _clarify_sub_case_response(service_id: str) -> dict[str, Any]:
-    return _question_response(_SUB_CASE_QUESTIONS[service_id])
+def _clarify_sub_case_response(service_id: str, reference: dict[str, Any]) -> dict[str, Any]:
+    sub_cases = reference["services"][service_id]["sub_cases"]
+    options = [sub_case["label"] for sub_case in sub_cases.values()]
+    return _question_response(_SUB_CASE_QUESTIONS[service_id], options)
 
 
-def _clarify_situation_response() -> dict[str, Any]:
-    return _question_response(
-        "Which situation applies: replacing a green ID book, replacing a Smart ID, a lost or "
-        "stolen document, a minor applicant, a parent who is deceased, a marital-status change, "
-        "or a pending name/surname amendment?"
-    )
+def _clarify_situation_response(reference: dict[str, Any]) -> dict[str, Any]:
+    situations = reference["services"]["smart_id"]["sub_cases"]["renewal_or_replacement"]["situations"]
+    options = [situation["label"] for situation in situations.values()]
+    return _question_response("Which situation applies?", options)
 
 
 def _clarify_complications_response(applicable_ids: list[str], state: ConversationState, sub_case: dict[str, Any]) -> dict[str, Any]:
     src = _resolve_documents_source(state, sub_case)
     conditional = src.get("conditional_documents", {})
     labels = [conditional[cid]["trigger_label"] for cid in applicable_ids if cid in conditional]
-    reply = "Do any of these apply to you? " + "; ".join(labels) + ". If none apply, just say 'no'."
-    return _question_response(reply)
+    reply = "Do any of these apply to you?"
+    return _question_response(reply, [*labels, _NONE_OF_THESE_APPLY])
 
 
 def _not_covered_response(sub_case: dict[str, Any]) -> dict[str, Any]:
@@ -776,6 +785,7 @@ def _final_response(state: ConversationState, reference: dict[str, Any], service
         "estimatedCost": _format_cost(cost),
         "estimatedTime": _ESTIMATED_TIME_NOTE,
         "nearestBranch": None,
+        "options": [],
     }
 
 
@@ -803,7 +813,7 @@ def answer(message: str, location: dict[str, Any] | None = None, conversation_id
         service_id = _resolve_service(message, reference)
         if service_id is None:
             _SESSIONS[key] = state
-            return respond(_clarify_service_response())
+            return respond(_clarify_service_response(reference))
         state.service_id = service_id
         state.stage = "sub_case"
 
@@ -813,7 +823,7 @@ def answer(message: str, location: dict[str, Any] | None = None, conversation_id
         sub_case_id = _resolve_sub_case(state.service_id, message, reference)
         if sub_case_id is None:
             _SESSIONS[key] = state
-            return respond(_clarify_sub_case_response(state.service_id))
+            return respond(_clarify_sub_case_response(state.service_id, reference))
         state.sub_case_id = sub_case_id
         sub_case = service["sub_cases"][sub_case_id]
         if sub_case.get("not_covered"):
@@ -827,7 +837,7 @@ def answer(message: str, location: dict[str, Any] | None = None, conversation_id
         situation_id = _resolve_situation(message, reference)
         if situation_id is None:
             _SESSIONS[key] = state
-            return respond(_clarify_situation_response())
+            return respond(_clarify_situation_response(reference))
         state.situation_id = situation_id
         state.stage = "complications"
 

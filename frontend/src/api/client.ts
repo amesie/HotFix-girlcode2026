@@ -33,6 +33,9 @@ export type ChatResponse = {
   estimatedTime: string
   nearestBranch: NearestBranch | null
   conversationId?: string
+  /** Tappable choices for the question in `reply` (e.g. which service, which
+   * sub-case). Empty once the conversation reaches a final checklist. */
+  options?: string[]
 }
 
 type ApiErrorBody = {
